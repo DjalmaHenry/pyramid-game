@@ -14,7 +14,6 @@ export default function PyramidLevel({
   hint, 
   answer, 
   image, 
-  difficulty, 
   onCorrect, 
   isDisabled
 }: PyramidLevelProps) {

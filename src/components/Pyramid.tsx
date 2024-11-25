@@ -16,7 +16,14 @@ interface PyramidProps {
   isComplete: boolean;
 }
 
-export default function Pyramid({ levels, currentLevel, score, onCorrect, onReset, isComplete }: PyramidProps) {
+export default function Pyramid({
+  levels,
+  currentLevel,
+  score,
+  onCorrect,
+  onReset,
+  isComplete,
+}: PyramidProps) {
   const [expandedLevel, setExpandedLevel] = useState<number | null>(null);
 
   return (
@@ -40,8 +47,10 @@ export default function Pyramid({ levels, currentLevel, score, onCorrect, onRese
       <div className={`pyramid-container ${isComplete ? 'victory' : ''}`}>
         {/* Hard Level - Top */}
         <div className="pyramid-level top">
-          <div className={`pyramid-section ${currentLevel >= 2 ? 'active' : ''} 
-                        ${isComplete || currentLevel > 2 ? 'completed' : ''}`}>
+          <div
+            className={`pyramid-section ${currentLevel >= 2 ? 'active' : ''} 
+                        ${isComplete || currentLevel > 2 ? 'completed' : ''}`}
+          >
             <PyramidSection
               {...levels[2]}
               isActive={currentLevel === 2}
@@ -49,15 +58,20 @@ export default function Pyramid({ levels, currentLevel, score, onCorrect, onRese
               isExpanded={expandedLevel === 2}
               onExpand={() => setExpandedLevel(2)}
               onCollapse={() => setExpandedLevel(null)}
-              onCorrect={onCorrect}
+              onCorrect={() => {
+                onCorrect();
+                setExpandedLevel(null); // Fechar após correção
+              }}
             />
           </div>
         </div>
 
         {/* Medium Level - Middle */}
         <div className="pyramid-level middle">
-          <div className={`pyramid-section ${currentLevel >= 1 ? 'active' : ''} 
-                        ${currentLevel > 1 ? 'completed' : ''}`}>
+          <div
+            className={`pyramid-section ${currentLevel >= 1 ? 'active' : ''} 
+                        ${currentLevel > 1 ? 'completed' : ''}`}
+          >
             <PyramidSection
               {...levels[1]}
               isActive={currentLevel === 1}
@@ -65,15 +79,20 @@ export default function Pyramid({ levels, currentLevel, score, onCorrect, onRese
               isExpanded={expandedLevel === 1}
               onExpand={() => setExpandedLevel(1)}
               onCollapse={() => setExpandedLevel(null)}
-              onCorrect={onCorrect}
+              onCorrect={() => {
+                onCorrect();
+                setExpandedLevel(null); // Fechar após correção
+              }}
             />
           </div>
         </div>
 
         {/* Easy Level - Bottom */}
         <div className="pyramid-level bottom">
-          <div className={`pyramid-section ${currentLevel >= 0 ? 'active' : ''} 
-                        ${currentLevel > 0 ? 'completed' : ''}`}>
+          <div
+            className={`pyramid-section ${currentLevel >= 0 ? 'active' : ''} 
+                        ${currentLevel > 0 ? 'completed' : ''}`}
+          >
             <PyramidSection
               {...levels[0]}
               isActive={currentLevel === 0}
@@ -81,7 +100,10 @@ export default function Pyramid({ levels, currentLevel, score, onCorrect, onRese
               isExpanded={expandedLevel === 0}
               onExpand={() => setExpandedLevel(0)}
               onCollapse={() => setExpandedLevel(null)}
-              onCorrect={onCorrect}
+              onCorrect={() => {
+                onCorrect();
+                setExpandedLevel(null); // Fechar após correção
+              }}
             />
           </div>
         </div>

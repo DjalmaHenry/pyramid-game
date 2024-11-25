@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fade-in {
+  from { 
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(74, 222, 128, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(74, 222, 128, 0.8); }
+}
+
+.pyramid-container {
+  @apply relative w-full max-w-5xl mx-auto aspect-[3/2];
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.pyramid-level {
+  @apply absolute w-full transition-all duration-500 px-4;
+}
+
+.pyramid-level.top {
+  @apply top-[5%] left-1/2 -translate-x-1/2 w-[60%];
+  height: 30%;
+}
+
+.pyramid-level.middle {
+  @apply top-[35%] left-1/2 -translate-x-1/2 w-[75%];
+  height: 30%;
+}
+
+.pyramid-level.bottom {
+  @apply top-[65%] left-1/2 -translate-x-1/2 w-[90%];
+  height: 30%;
+}
+
+.pyramid-section {
+  @apply h-full bg-white/10 backdrop-blur-md rounded-lg transition-all duration-500 
+         border-2 border-white/20 shadow-lg hover:bg-white/20;
+  transform-style: preserve-3d;
+}
+
+.pyramid-section.active {
+  @apply bg-white/30 border-white/40;
+}
+
+.pyramid-section.completed {
+  @apply bg-emerald-100/30 border-emerald-400/50;
+}
+
+.victory .pyramid-section {
+  @apply border-emerald-400;
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Touch optimization for mobile */
+@media (hover: none) {
+  .pyramid-section:hover {
+    @apply bg-white/10;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pyramid-container {
+    aspect-ratio: 2/3;
+  }
+  
+  .pyramid-level.top {
+    @apply w-[80%] top-[5%];
+  }
+  
+  .pyramid-level.middle {
+    @apply w-[90%] top-[35%];
+  }
+  
+  .pyramid-level.bottom {
+    @apply w-[95%] top-[65%];
+  }
+}

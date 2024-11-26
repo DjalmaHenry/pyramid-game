@@ -6,19 +6,19 @@ const LEVELS = [
   {
     hint: "This animal says 'Moo.' It gives us milk to drink.",
     answer: "cow",
-    image: "/src/assets/images/cow.png",
+    image: "/images/cow.png",
     difficulty: "Easy"
   },
   {
     hint: "This animal says 'Baa.' It has fluffy white wool.",
     answer: "sheep",
-    image: "/src/assets/images/sheep.png",
+    image: "/images/sheep.png",
     difficulty: "Medium"
   },
   {
     hint: "This animal says 'Oink.' It loves to roll in the mud.",
     answer: "pig",
-    image: "/src/assets/images/pig.png",
+    image: "/images/pig.png",
     difficulty: "Hard"
   }
 ];
@@ -55,8 +55,8 @@ function App() {
         <Confetti
           width={window.innerWidth}
           height={window.innerHeight}
-          numberOfPieces={200}
-          gravity={0.2}
+          numberOfPieces={150}
+          gravity={0.4}
         />
       )}
     </div>

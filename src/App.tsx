@@ -56,7 +56,7 @@ function App() {
           width={window.innerWidth}
           height={window.innerHeight}
           numberOfPieces={150}
-          gravity={0.4}
+          gravity={0.3}
         />
       )}
     </div>
